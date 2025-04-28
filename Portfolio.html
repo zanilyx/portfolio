@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ritesh.Codes | Embedded Systems Enthusiast & Developer</title>
+  <style>
+    :root {
+      --primary: #00ff41;
+      --secondary: #0a192f;
+      --accent: #ff00ff;
+      --text: #cccccc;
+      --dark: #0a0a0a;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+    
+    body {
+      background-color: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)),
+        url('/api/placeholder/1280/800');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+    
+    header {
+      padding: 20px 0;
+      border-bottom: 2px solid var(--primary);
+      position: relative;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .logo {
+      font-size: 2rem;
+      color: var(--primary);
+      font-weight: bold;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo::before {
+      content: "<";
+      margin-right: 5px;
+    }
+    
+    .logo::after {
+      content: " />";
+      margin-left: 5px;
+    }
+    
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 5px 0;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    nav a::before {
+      content: "> ";
+      color: var(--primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    nav a:hover::before {
+      opacity: 1;
+    }
+    
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0;
+      position: relative;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      color: white;
+    }
+    
+    .hero h1 span {
+      color: var(--primary);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin-bottom: 30px;
+    }
+    
+    .terminal-text {
+      position: relative;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 5px;
+      border-left: 4px solid var(--primary);
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    
+    .terminal-text::before {
+      content: "$ ";
+      color: var(--primary);
+    }
+    
+    .typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 4s steps(60, end);
+    }
+    
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background-color: var(--primary);
+      animation: blink 1s infinite;
+      vertical-align: middle;
+    }
+    
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink {
+      50% { opacity: 0 }
+    }
+    
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-button:hover {
+      background-color: var(--primary);
+      color: var(--dark);
+    }
+    
+    .cta-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -20px;
+      width: 10px;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.5);
+      transform: skewX(-20deg);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -60px; }
+      30% { left: 140%; }
+      100% { left: 140%; }
+    }
+    
+    section {
+      padding: 60px 0;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+      color: white;
+    }
+    
+    .section-title::before {
+      content: "class ";
+      color: #e06c75;
+      font-size: 1rem;
+      font-weight: normal;
+      position: absolute;
+      top: -20px;
+      left: 0;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100px;
+      height: 4px;
+      background-color: var(--primary);
+    }
+    
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .about-text p {
+      margin-bottom: 20px;
+    }
+    
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .tech-badge {
+      padding: 5px 12px;
+      background-color: rgba(0, 255, 65, 0.1);
+      color: var(--primary);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--primary);
+    }
+    
+    .tech-badge::before {
+      content: "#";
+      margin-right: 5px;
+      color: var(--accent);
+    }
+    
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-card {
+      background-color: rgba(10, 25, 47, 0.7);
+      border-radius: 5px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 255, 65, 0.2);
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 255, 65, 0.15);
+      border-color: var(--primary);
+    }
+    
+    .project-details {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .project-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: white;
+    }
+    
+    .project-description {
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      color: #bbbbbb;
+      flex-grow: 1;
+    }
+    
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .project-tech span {
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 15px;
+      margin-top: auto;
+    }
+    
+    .project-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    
+    .project-links a:hover {
+      color: var(--primary);
+    }
+    
+    .matrix-rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.05;
+      z-index: -1;
+    }
+    
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid rgba(0, 255, 65, 0.2);
+      margin-top: 60px;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .footer-text {
+      flex: 1;
+      font-size: 0.9rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .social-links a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 1.1rem;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary);
+    }
+    
+    .footer-text span {
+      color: var(--primary);
+    }
+    
+    .float-ascii {
+      position: absolute;
+      opacity: 0.1;
+      font-size: 10px;
+      line-height: 1;
+      color: var(--primary);
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .float-ascii-1 {
+      top: 10%;
+      left: 5%;
+      transform: rotate(-10deg);
+    }
+    
+    .float-ascii-2 {
+      bottom: 15%;
+      right: 7%;
+      transform: rotate(5deg);
+    }
+    
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      color: var(--primary);
+    }
+    
+    .loading::after {
+      content: "...";
+      animation: loading 1.5s infinite;
+      width: 20px;
+      text-align: left;
+    }
+    
+    @keyframes loading {
+      0% { content: "."; }
+      33% { content: ".."; }
+      66% { content: "..."; }
+    }
+    
+    #error-message {
+      color: #ff6b6b;
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 0, 0, 0.1);
+      border-radius: 5px;
+      margin: 20px 0;
+      display: none;
+    }
+    
+    .no-projects {
+      text-align: center;
+      padding: 40px;
+      color: var(--text);
+      font-style: italic;
+    }
+    
+    /* Responsive Design Improvements */
+    @media (max-width: 960px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .about-content {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .terminal-text {
+        padding: 15px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .typing {
+        white-space: normal;
+        animation: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      nav {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      nav a {
+        font-size: 0.9rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .tech-badge {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+      }
+      
+      .project-title {
+        font-size: 1.2rem;
+      }
+      
+      .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="matrix-rain" id="matrixRain"></div>
+  
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">Ritesh.Codes</a>
+        <nav>
+          <a href="#about">about.h</a>
+          <a href="#projects">projects.c</a>
+          <a href="#contact">contact.py</a>
+          <a href="#skills">skills.asm</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="float-ascii float-ascii-1">
+          01010010 01101001 01110100 01100101 01110011 01101000<br/>
+          01010000 01100001 01110010 01110101 01100011 01101000 01110101 01110010 01101001<br/>
+          01000011 01010011 01000101
+        </div>
+        <h1>Hello, I'm <span>Ritesh Paruchuri</span></h1>
+        <div class="terminal-text">
+          <span class="typing">CSE student @ PES | Embedded Systems Enthusiast | Hardware Hacker</span>
+          <span class="cursor"></span>
+        </div>
+        <p>I build hardware and software solutions from the ground up, from 4-bit CPUs to random things. When I'm not soldering or coding, you can find me gaming or exploring new microcontroller projects.</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="cta-button">View My Work</a>
+          <a href="#contact" class="cta-button">Initialize Contact</a>
+        </div>
+      </div>
+    </section>
+    
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">AboutMe</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>I'm a Computer Science Engineering student at PES with a passion for embedded systems and hardware development. I enjoy working at the intersection of software and hardware, building solutions from scratch that push my understanding of how computers really work.</p>
+            <p>My journey began with a fascination for electronics and computing fundamentals, leading me to build my own 4-bit CPU using discrete components. Today, I focus on creating innovative embedded systems while expanding my knowledge of low-level computing principles.</p>
+            <h3 style="color: var(--primary); margin-top: 30px; margin-bottom: 15px;">Tech Stack:</h3>
+            <div class="tech-stack">
+              <span class="tech-badge">C</span>
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">Embedded C</span>
+              <span class="tech-badge">Microcontrollers</span>
+              <span class="tech-badge">Flip-flops</span>
+              <span class="tech-badge">Virtualization</span>
+              <span class="tech-badge">Full-stack</span>
+              <span class="tech-badge">KiCad</span>
+              <span class="tech-badge">Assembly</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div id="error-message"></div>
+        <div id="projects-loading" class="loading">Fetching projects from GitHub</div>
+        <div id="project-grid" class="project-grid">
+          <!-- Projects will be dynamically loaded here -->
+        </div>
+      </div>
+    </section>
+    
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <div class="terminal-text">
+          <span class="typing">printf("Let's build something amazing together!");</span>
+          <span class="cursor"></span>
+        </div>
+        <p style="margin-bottom: 30px;">I'm always interested in discussing new hardware projects, embedded systems challenges, or opportunities to collaborate on creative tech solutions.</p>
+        <a href="mailto:ritesh4400hi@gmail.com" class="cta-button">ritesh4400hi@gmail.com</a>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>Designed & Built with <span>♥</span> by Ritesh Paruchuri</p>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/zanilyx" target="_blank" id="github-link">GitHub</a>
+          <a href="https://instagram.com/zanilyx" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="float-ascii float-ascii-2">
+      01000101 01101101 01100010 01100101 01100100 01100100 01100101 01100100<br/>
+      01010011 01111001 01110011 01110100 01100101 01101101 01110011<br/>
+      01001000 01100001 01100011 01101011 01100101 01110010
+    </div>
+  </footer>
+
+  <script>
+    // Matrix rain effect
+    document.addEventListener('DOMContentLoaded', function() {
+      // Matrix rain effect
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const matrixRain = document.getElementById('matrixRain');
+      
+      matrixRain.appendChild(canvas);
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const characters = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const fontSize = 12;
+      const columns = Math.floor(canvas.width / fontSize);
+      const drops = [];
+      
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.floor(Math.random() * canvas.height);
+      }
+      
+      function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00ff41';
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+          const text = characters.charAt(Math.floor(Math.random() * characters.length));
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          
+          drops[i]++;
+        }
+      }
+      
+      setInterval(draw, 35);
+      
+      window.addEventListener('resize', function() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+      
+      // GitHub Projects Fetcher
+      const loading = document.getElementById('projects-loading');
+      const grid = document.getElementById('project-grid');
+      const errorMsg = document.getElementById('error-message');
+      
+      // Sample projects to display when GitHub API fails or for development
+      const fallbackProjects = [
+        {
+          name: "4-bit-cpu",
+          description: "A 4-bit CPU built from scratch using discrete components",
+          language: "Assembly",
+          html_url: "https://github.com/zanilyx/4-bit-cpu"
+        },
+        {
+          name: "esp32-weather-station",
+          description: "A weather station using ESP32 and various sensors",
+          language: "C++",
+          html_url: "https://github.com/zanilyx/esp32-weather-station"
+        },
+        {
+          name: "arduino-midi-controller",
+          description: "Custom MIDI controller built with Arduino",
+          language: "C",
+          html_url: "https://github.com/zanilyx/arduino-midi-controller"
+        },
+        {
+          name: "raspberry-pi-cluster",
+          description: "Setting up a Raspberry Pi cluster for distributed computing experiments",
+          language: "Python",
+          html_url: "https://github.com/zanilyx/raspberry-pi-cluster"
+        }
+      ];
+
+      function fetchGitHubProjects() {
+        fetch('https://api.github.com/users/zanilyx/repos')
+          .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+          })
+          .then(repos => {
+            loading.style.display = 'none';
+            
+            if (!repos.length) {
+              grid.innerHTML = '<div class="no-projects">No projects found</div>';
+              return;
+            }
+
+            displayProjects(repos);
+          })
+          .catch(error => {
+            console.error('Error fetching GitHub repositories:', error);
+            loading.style.display = 'none';
+            errorMsg.style.display = 'block';
+            errorMsg.textContent = `Error loading projects from GitHub. Displaying sample projects instead.`;
+            
+            // Display fallback projects when API fails
+            displayProjects(fallbackProjects);
+          });
+      }
+      
+      function displayProjects(projects) {
+        grid.innerHTML = '';
+        
+        projects.forEach(project => {
+          const card = document.createElement('div');
+          card.className = 'project-card';
+          
+          // Make the entire card clickable
+          card.addEventListener('click', function() {
+            window.open(project.html_url, '_blank');
+          });
+          
+          card.innerHTML = `
+            <div class="project-details">
+              <h3 class="project-title">${project.name.replace(/-/g, ' ')}</h3>
+              <p class="project-description">${project.description || 'No description available'}</p>
+              <div class="project-tech">
+                <span>${project.language || 'N/A'}</span>
+              </div>
+            </div>
+          `;
+          
+          grid.appendChild(card);
+        });
+      }
+      
+      // Initialize GitHub projects
+      fetchGitHubProjects();
+    });
+  </script>
+</body>
+</html>
